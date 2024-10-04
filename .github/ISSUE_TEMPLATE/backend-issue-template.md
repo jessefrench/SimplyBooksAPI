@@ -7,10 +7,6 @@ assignees: ''
 
 ---
 
-# Title
-<!--- Give your issue a title indicating what it's for -->
-<!--- Example: Create a new genre -->
-
 ## Description
 <!--- Explain what needs to be done  -->
 <!--- Example: This ticket requests the implementation of a route that allows the creation of a new genre. -->
@@ -18,9 +14,9 @@ assignees: ''
 ## Request
 <!--- Show what needs to be included in the request  -->
 <!--- Example:
-- **Method:** POST
-- **Path:** /genres
-- **Body**
+**Method:** `POST`
+**Path:** `/genres`
+**Body:**
   ```json
   {
     "description": "Genre Description"
@@ -31,7 +27,8 @@ assignees: ''
 ## Response
 <!--- Show what needs to be included in the response -->
 <!--- Example:
-- **Body**
+**Status code:** `201 Created`
+**Body:**
   ```json
   {
     "id": 123,
