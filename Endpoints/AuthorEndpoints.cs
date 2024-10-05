@@ -56,16 +56,19 @@ namespace SimplyBooks.Endpoints
                 return Results.Ok(authorToUpdate);
             });
 
-            // delete an author
+            // delete an author + author's books
             app.MapDelete("/authors/{id}", (SimplyBooksDbContext db, int id) =>
             {
-                Author author = db.Authors.SingleOrDefault(author => author.Id == id);
+                Author author = db.Authors
+                    .Include(author => author.Books)
+                    .SingleOrDefault(author => author.Id == id);
 
                 if (author == null)
                 {
                     return Results.NotFound();
                 }
 
+                db.Books.RemoveRange(author.Books);
                 db.Authors.Remove(author);
                 db.SaveChanges();
                 return Results.NoContent();
