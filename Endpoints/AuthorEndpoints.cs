@@ -13,12 +13,21 @@ namespace SimplyBooks.Endpoints
                 return db.Authors.ToList();
             });
 
+            // get all authors by user
+            app.MapGet("/authors/users/{userId}", (SimplyBooksDbContext db, int userId) =>
+            {
+                return db.Authors
+                       .Where(author => author.UserId == userId)
+                       .Include(author => author.Books)
+                       .ToList();
+            });
+
             // get a single author + author's books
-            app.MapGet("/authors/{id}", (SimplyBooksDbContext db, int id) =>
+            app.MapGet("/authors/{authorId}", (SimplyBooksDbContext db, int authorId) =>
             {
                 Author author = db.Authors
                                 .Include(author => author.Books)
-                                .SingleOrDefault(author => author.Id == id);
+                                .SingleOrDefault(author => author.Id == authorId);
 
                 if (author == null)
                 {
@@ -37,9 +46,9 @@ namespace SimplyBooks.Endpoints
             });
 
             // update an author
-            app.MapPut("/authors/{id}", (SimplyBooksDbContext db, int id, Author author) =>
+            app.MapPut("/authors/{authorId}", (SimplyBooksDbContext db, int authorId, Author author) =>
             {
-                Author authorToUpdate = db.Authors.SingleOrDefault(author => author.Id == id);
+                Author authorToUpdate = db.Authors.SingleOrDefault(author => author.Id == authorId);
 
                 if (authorToUpdate == null)
                 {
@@ -57,11 +66,11 @@ namespace SimplyBooks.Endpoints
             });
 
             // delete an author + author's books
-            app.MapDelete("/authors/{id}", (SimplyBooksDbContext db, int id) =>
+            app.MapDelete("/authors/{authorId}", (SimplyBooksDbContext db, int authorId) =>
             {
                 Author author = db.Authors
                     .Include(author => author.Books)
-                    .SingleOrDefault(author => author.Id == id);
+                    .SingleOrDefault(author => author.Id == authorId);
 
                 if (author == null)
                 {

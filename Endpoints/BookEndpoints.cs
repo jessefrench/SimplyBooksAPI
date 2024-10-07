@@ -13,12 +13,21 @@ namespace SimplyBooks.Endpoints
                 return db.Books.ToList();
             });
 
+            // get all books by user
+            app.MapGet("/books/users/{userId}", (SimplyBooksDbContext db, int userId) =>
+            {
+                return db.Books
+                        .Where(book => book.UserId == userId)
+                        .Include(book => book.Author)
+                        .ToList();
+            });
+
             // get a single book + author details
-            app.MapGet("/books/{id}", (SimplyBooksDbContext db, int id) =>
+            app.MapGet("/books/{bookId}", (SimplyBooksDbContext db, int bookId) =>
             {
                 Book book = db.Books
                                 .Include(book => book.Author)
-                                .SingleOrDefault(book => book.Id == id);
+                                .SingleOrDefault(book => book.Id == bookId);
 
                 if (book == null)
                 {
@@ -37,9 +46,9 @@ namespace SimplyBooks.Endpoints
             });
 
             // update a book
-            app.MapPut("/books/{id}", (SimplyBooksDbContext db, int id, Book book) =>
+            app.MapPut("/books/{bookId}", (SimplyBooksDbContext db, int bookId, Book book) =>
             {
-                Book bookToUpdate = db.Books.SingleOrDefault(book => book.Id == id);
+                Book bookToUpdate = db.Books.SingleOrDefault(book => book.Id == bookId);
 
                 if (bookToUpdate == null)
                 {
@@ -57,9 +66,9 @@ namespace SimplyBooks.Endpoints
             });
 
             // delete a book
-            app.MapDelete("/books/{id}", (SimplyBooksDbContext db, int id) =>
+            app.MapDelete("/books/{bookId}", (SimplyBooksDbContext db, int bookId) =>
             {
-                Book book = db.Books.SingleOrDefault(book => book.Id == id);
+                Book book = db.Books.SingleOrDefault(book => book.Id == bookId);
 
                 if (book == null)
                 {
