@@ -1,10 +1,11 @@
 <h1 align="center" style="font-weight: bold;">SimplyBooksAPI 📖</h1>
 
 <p align="center">
-<a href="#technologies">Technologies</a>
-<a href="#getting-started">Getting Started</a>
-<a href="#api-endpoints">API Endpoints</a>
-<a href="#postman-documentation"> Postman Documentation</a>
+<a href="#technologies">Technologies</a> | 
+<a href="#getting-started">Getting Started</a> | 
+<a href="#api-endpoints">API Endpoints</a> | 
+<a href="#postman-documentation"> Postman Documentation</a> | 
+<a href="#walkthrough-video">Walkthrough Video</a>
 </p>
 
 <p align="center">SimplyBooksAPI is a REST (Representational State Transfer) API that allows users to perform basic CRUD (Create, Read, Update, Delete) operations on their book and author collections.</p>
@@ -93,4 +94,8 @@ Launch the solution in Visual Studio. Swagger should automatically launch and pr
 
 <h2 id="postman-documentation">📄 Postman Documentation</h2>
 
-You can also check out the [SimplyBooksAPI Postman Documentation](https://documenter.getpostman.com/view/21397951/2sAXxMgu1p) to learn more about the API routes and see examples of how each request and response should look.
+Check out the [SimplyBooksAPI Postman Documentation](https://documenter.getpostman.com/view/21397951/2sAXxMgu1p) to learn more about the API routes and see examples of how each request and response should look.
+
+<h2 id="walkthrough-video">🎥 Walkthrough Video</h2>
+
+You can also check out this quick [video](https://www.loom.com/share/1338aa1fcf3e4ba5b77e77ac97b57811?sid=7e4a1eee-fb7c-4427-b91d-19847ecb069b) that walks through each endpoint using Swagger UI.
